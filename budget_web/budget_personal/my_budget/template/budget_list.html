@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Budget List{% endblock %}
+
+{% block content %}
+<h1>Budget List</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Child</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Month</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for budget in budgets %}
+        <tr>
+            <td>{{ budget.child.name }}</td>
+            <td>{{ budget.category.name }}</td>
+            <td>{{ budget.amount }}</td>
+            <td>{{ budget.month }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No budgets available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'create_budget' %}">Create New Budget</a>
+{% endblock %}
